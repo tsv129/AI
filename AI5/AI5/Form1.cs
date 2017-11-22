@@ -22,22 +22,27 @@ namespace AI5
 
         private void button1_Click(object sender, EventArgs e)
         {
-            int tmp, rnged;
-            for (int i=0; i < 50; i++)
-            {
-                rnged = rng.Next(12);
-                tmp = gen[0];
-                gen[0] = gen[rnged];
-                gen[rnged] = tmp;
-            }
-
+            Swaper(50);
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void Swaper(int countI)
         {
+            int tmp, rnged, rnged2;
+            for (int i = 0; i < countI; i++)
+            {
+                do
+                {
+                    rnged = rng.Next(12);
+                    rnged2 = rng.Next(12);
+                } while (gen[rnged] == gen[rnged2]);
+                tmp = gen[rnged];
+                gen[rnged] = gen[rnged2];
+                gen[rnged2] = tmp;
+            }
+
             label1.Text = "";
-            for (int i=0; i<12;i++)
-                label1.Text += gen[i].ToString()+"  ";
+            for (int i = 0; i < 12; i++)
+                label1.Text += gen[i].ToString() + "  ";
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -58,6 +63,11 @@ namespace AI5
                     finished = true;
             }
             MessageBox.Show(turns.ToString());
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            Swaper(1);
         }
     }
 }
